@@ -12,20 +12,19 @@ const HideOnScroll: React.FC<Props> = ({ children }) => {
   const [lastScrollTop, setLastScrollTop] = useState(0);
   const [isVisible, setIsVisible] = useState(true);
 
-  const handleScroll = () => {
-    const currentScrollTop =
-      window.pageYOffset || document.documentElement.scrollTop;
-
-    setIsVisible(lastScrollTop > currentScrollTop || currentScrollTop === 0);
-    setLastScrollTop(currentScrollTop);
-  };
-
   useEffect(() => {
+    const handleScroll = () => {
+      const currentScrollTop =
+        window.pageYOffset || document.documentElement.scrollTop;
+
+      setIsVisible(lastScrollTop > currentScrollTop || currentScrollTop === 0);
+      setLastScrollTop(currentScrollTop);
+    };
     window.addEventListener("scroll", handleScroll);
     return () => {
       window.removeEventListener("scroll", handleScroll);
     };
-  }, [handleScroll, lastScrollTop]);
+  }, [lastScrollTop]);
 
   return (
     <div
