@@ -25,7 +25,7 @@ const HideOnScroll: React.FC<Props> = ({ children }) => {
     return () => {
       window.removeEventListener("scroll", handleScroll);
     };
-  }, [lastScrollTop]);
+  }, [handleScroll, lastScrollTop]);
 
   return (
     <div
